@@ -64,6 +64,35 @@ Les User Stories ci-dessous décrivent les besoins fonctionnels du système de p
 
 ---
 
+## US5 — Consulter le panier (détail des lignes)
+
+**En tant que** client
+**Je veux** consulter le contenu détaillé du panier
+**Afin de** vérifier les produits et montants.
+
+**Critères d’acceptation**
+
+* Chaque ligne affiche : nom, prix unitaire, quantité, sous-total.
+* Le total général est visible.
+* Panier vide → message “Panier vide”.
+
+---
+
+## US6 — Valider la commande (hors paiement)
+
+**En tant que** client
+**Je veux** valider mon panier
+**Afin de** transformer mon panier en commande.
+
+**Critères d’acceptation**
+
+* Un panier vide ne peut pas être validé.
+* Avant validation : vérification globale (produits actifs, stocks suffisants, cohérence).
+* Si validation réussie : une commande est créée/enregistrée, et le panier est verrouillé.
+* Après verrouillage : aucune modification du panier n’est possible.
+
+---
+
 ### **User Stories non implémentées à ce stade**
 
 Les User Stories suivantes font partie du scénario global mais ne sont pas implémentées dans cette première itération :

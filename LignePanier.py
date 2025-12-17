@@ -1,3 +1,5 @@
+from Produit import Produit
+
 class LignePanier:
 
     # Constructeur
