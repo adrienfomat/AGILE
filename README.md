@@ -3,7 +3,7 @@ Gestion complète du panier d’achat et du processus de commande
 
 ---
 
-### 👤 Rôle (Persona)
+### 👤 Rôle 
 *En tant que* client d’une plateforme e-commerce  
 *Je veux* pouvoir constituer, modifier et valider un panier d’achat de manière fluide et sécurisée  
 *Afin de* finaliser mes achats sans erreur, avec une information fiable sur les produits, les prix et la disponibilité.
