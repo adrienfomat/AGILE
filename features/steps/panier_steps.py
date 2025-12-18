@@ -4,32 +4,44 @@ from PanierAchat import PanierAchat
 from Produit import Produit
 
 
+# GIVEN
+
+
 @given("un panier vide")
 def step_panier_vide(context):
     context.panier = PanierAchat()
+    context.produits = {}
 
 
 @given('un produit "{nom}" actif avec un prix de {prix:d} et un stock de {stock:d}')
 def step_creer_produit(context, nom, prix, stock):
     produit = Produit(nom, prix, stock, True)
-    context.produits = getattr(context, "produits", {})
+
+    if not hasattr(context, "produits") or context.produits is None:
+        context.produits = {}
+
     context.produits[nom] = produit
 
 
 @given('un panier contenant le produit "{nom}" avec une quantité de {quantite:d}')
 def step_panier_avec_produit(context, nom, quantite):
     context.panier = PanierAchat()
-    produit = Produit(nom, 15, 10, True)
-    context.produits = {nom: produit}
+    context.produits = {}
+
+    # Prix/stock par défaut pour ce Given (suffisant pour les scénarios)
+    produit = Produit(nom, 15, 50, True)
+    context.produits[nom] = produit
+
     context.panier.ajouter_produit(produit, quantite)
 
+# WHEN
 
-@when('j\'ajoute {quantite:d} exemplaire du produit "{nom}" au panier')
+
 @when('j\'ajoute {quantite:d} exemplaires du produit "{nom}" au panier')
+@when('j\'ajoute {quantite:d} exemplaire du produit "{nom}" au panier')
 def step_ajouter_produit(context, quantite, nom):
     produit = context.produits[nom]
     context.panier.ajouter_produit(produit, quantite)
-
 
 
 @when('je supprime le produit "{nom}" du panier')
@@ -39,7 +51,10 @@ def step_supprimer_produit(context, nom):
 
 @when("je consulte le panier")
 def step_consulter_panier(context):
+    # On l'appelle, mais les asserts sont faits dans les Then
     context.panier.afficher_panier()
+
+# THEN
 
 
 @then("le panier contient {nb:d} ligne")
