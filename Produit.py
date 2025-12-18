@@ -6,6 +6,7 @@ class Produit:
         self.prix = prix
         self.stock = stock
         self.actif = actif
+        self.panier = None # pour bidirectionnel 
 
     def get_nom(self):
         return self.nom
@@ -22,3 +23,11 @@ class Produit:
     def retirer_stock(self, quantite):
         if quantite <= self.stock:
             self.stock -= quantite
+
+    # pour bidirectionnel 
+    def get_panier(self):
+        return self.panier
+
+    def _set_panier(self, panier):
+        self.panier = panier
+
